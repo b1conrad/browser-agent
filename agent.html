@@ -44,7 +44,9 @@
           <td>
             <button>Accept</button>
           {{#if ui.routerUI}}
-            <input type="checkbox" name="need_router_connection" value="true"> via inbound router
+            <input type="checkbox" name="need_router_connection" value="true"
+              {{#if browser}} checked disabled{{/if}}>
+            via inbound router
           {{/if}}
           </td>
         </tr>
