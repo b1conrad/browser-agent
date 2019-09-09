@@ -149,8 +149,8 @@ async function main(){
   var agentTemplate = Handlebars.compile($('#agent-template').html());
   var ridAgent = 'org.sovrin.agent'
   var ridEdge = 'org.sovrin.edge'
-  var eventRE = /^\/sky\/event\/([^\/]*)\/([^\/]*)\/([^\/]*)\/([^\/]*)([?].*)/
-  //var queryRE = /^\/sky\/query\/([^\/]*)\/([^\/]*)\/([^\/]*)([?].*)/
+  var eventRE = /^\/sky\/event\/([^\/]*)\/([^\/]*)\/([^\/]*)\/([^\/]*)([?]?.*)/
+  //var queryRE = /^\/sky\/query\/([^\/]*)\/([^\/]*)\/([^\/]*)([?]?.*)/
   var formToJSON = function (form,qs) {
     var json = {}
     if(form){
