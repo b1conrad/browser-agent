@@ -154,8 +154,8 @@ async function main(){
   var agentTemplate = Handlebars.compile($('#agent-template').html());
   var ridAgent = 'org.sovrin.agent'
   var ridEdge = 'org.sovrin.edge'
-  var eventRE = /^\/sky\/event\/([^\/]*)\/([^\/]*)\/([^\/]*)\/([^\/]*)([?]?.*)/
-  //var queryRE = /^\/sky\/query\/([^\/]*)\/([^\/]*)\/([^\/]*)([?]?.*)/
+  var eventRE = /^\/sky\/event\/([^\/]*)\/([^\/]*)\/([^\/]*)\/([^\/]*)/
+  //var queryRE = /^\/sky\/query\/([^\/]*)\/([^\/]*)\/([^\/]*)/
   var formToJSON = function (form,qs) {
     var json = {}
     if(form){
@@ -163,26 +163,30 @@ async function main(){
         json[elm.name] = elm.value
       })
     }
-    var argsTail = qs.match(/[?](.*)/)
-    if(argsTail){
-      var args = argsTail[1].split(/&/)
+    if(qs){
+      var args = qs.split('&')
       for(var i=0; i<args.length; ++i){
-        kv = args[i].split(/=/)
-        json[kv[0]] = kv[1]
+        kv = args[i].split('=')
+        var name = kv.shift()
+        var value = kv.length ? (kv.length>1 ? kv.join('=') : kv.shift()) : ''
+        json[name] = value
       }
     }
     return json
   }
   var convert = function(url,form){
-      var isEvent = url.match(eventRE)
-      //var isQuery = url.match(queryRE)
+      var parts = url.split('?')
+      var isEvent = parts[0].match(eventRE)
+      //var isQuery = parts[0].match(queryRE)
+      parts.shift()
+      var qs = parts.length ? parts.join('?') : ''
       if(isEvent){
         return({
           eci:isEvent[1],
           eid:isEvent[2],
           domain:isEvent[3],
           type:isEvent[4],
-          attrs:formToJSON(form,isEvent[5])
+          attrs:formToJSON(form,qs)
         })
       }
       //}else if(isQuery){
@@ -190,7 +194,7 @@ async function main(){
           //eci:isQuery[1],
           //rid:isQuery[2],
           //name:isQuery[3],
-          //args:formToJSON(null,isQuery[4])
+          //args:formToJSON(null,qs)
         //})
       //}
   }
