@@ -218,6 +218,20 @@ async function main(){
       if(isEdge){
         agentUI.ui.routerUI = await pe.runQuery({eci:rootECI,rid:ridEdge,name:'ui'})
         // adjust ui with router information
+        var routerUsedCount = 0
+        if (agentUI.ui && agentUI.ui.routerUI) {
+          if (agentUI.ui.routerUI.routerName && agentUI.ui.connections) {
+            var toSuffix = " to " + agentUI.ui.name
+            for (var ic=0; ic < agentUI.ui.connections.length; ++ic) {
+              var rConnName = agentUI.ui.connections[ic].label + toSuffix
+              if (agentUI.ui.routerUI.routerConnections && agentUI.ui.routerUI.routerConnections[rConnName]) {
+                agentUI.ui.connections[ic].routerName = agentUI.ui.routerUI.routerName
+                ++routerUsedCount
+              }
+            }
+          }
+          agentUI.ui.routerUI.unused = routerUsedCount == 0
+        }
       }
       agentUI.text = JSON.stringify(agentUI.ui, undefined, 2)
     } else {
