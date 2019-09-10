@@ -108,7 +108,7 @@
     </script>
   </head>
   <body>
-    <div id="section">
+    <div id="section" style="padding:10px">
     <p>Loading...</p>
     </div>
 <script src="http://picos.byu.edu/pico-engine.js" type="text/javascript"></script>
@@ -198,6 +198,7 @@ async function main(){
         //})
       //}
   }
+  var $theSection = $('#section')
   var doDisplay = async function(){
     var agentUI = { eci: myself.eci, pico_id: myself.id, browser: true }
     var hasRids = await pe.runQuery({eci:rootECI,rid:ridWrangler,name:'installedRulesets'})
@@ -215,8 +216,8 @@ async function main(){
     } else {
       agentUI.disabled = true
     }
-    $('#section').html(agentTemplate(agentUI))
-    $('#section').find('.js-ajax-link').click(async function (e) {
+    $theSection.html(agentTemplate(agentUI))
+    $theSection.find('.js-ajax-link').click(async function (e) {
       e.preventDefault()
       var href = $(this).attr('href')
       if(confirm(JSON.stringify(convert(href)))){
@@ -224,7 +225,7 @@ async function main(){
         doDisplay()
       }
     })
-    $('#section').find('.js-ajax-form').submit(async function (e) {
+    $theSection.find('.js-ajax-form').submit(async function (e) {
       e.preventDefault()
       var action = $(this).attr('action')
       if(confirm(JSON.stringify(convert(action,this)))){
