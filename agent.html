@@ -39,13 +39,18 @@
         </tr>
 {{/if}}
         <tr>
-          <th align="right">Received Invitation</th>
+          <th align="right">Receive Invitation</th>
           <td><input type="text" name="url" placeholder="paste invitation URL here"></td>
           <td>
-            <button>Accept</button>
+            <button
+            {{#if browser}}{{#unless ui.routerUI}} disabled{{/unless}}{{/if}}
+              >Accept</button>
           {{#if ui.routerUI}}
-            <input type="checkbox" name="need_router_connection" value="true"
-              {{#if browser}} checked disabled{{/if}}>
+          {{#if browser}}
+            <input type="hidden" name="need_router_connection" value="true">
+          {{else}}
+            <input type="checkbox" name="need_router_connection" value="true">
+          {{/if}}
             via inbound router
           {{/if}}
           </td>
