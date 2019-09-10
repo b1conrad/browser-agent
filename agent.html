@@ -108,6 +108,9 @@
     </script>
   </head>
   <body>
+    <div id="refresh" style="padding:10px;float:right">
+      <button>Refresh</button>
+    </div>
     <div id="section" style="padding:10px">
     <p>Loading...</p>
     </div>
@@ -151,6 +154,10 @@ async function main(){
       pe.registerRulesetURL(agent_rbase+agent_rids[i]+'.krl');
     }
   }
+  $('#refresh').click(function (e) {
+    e.preventDefault()
+    doDisplay()
+  })
   var agentTemplate = Handlebars.compile($('#agent-template').html());
   var ridAgent = 'org.sovrin.agent'
   var ridEdge = 'org.sovrin.edge'
