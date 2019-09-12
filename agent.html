@@ -2,14 +2,19 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link rel="icon" type="image/png" href="https://manifold.picolabs.io:9090/pico-logo-transparent-48x48.png" />
-    <title>Browser Agent Pico</title>
+    <title>Browser Agent</title>
     <link rel="stylesheet" href="https://manifold.picolabs.io:9090/css/index.css" />
     <script src="https://manifold.picolabs.io:9090/js/jquery-3.1.0.min.js" type="text/javascript"></script>
     <script src="https://manifold.picolabs.io:9090/js/handlebars.min.js" type="text/javascript"></script>
     <script id="agent-template" type="text/x-handlebars-template">
       <div id="connection-list">
       {{#if disabled}}
-        To be an agent, <a class="js-ajax-link" href="/sky/event/{{eci}}/add-ruleset/wrangler/install_rulesets_requested?rids=org.sovrin.agent">install</a> the org.sovrin.agent ruleset
+        <form class="js-ajax-form" action="/sky/event/{{eci}}/add-ruleset/wrangler/install_rulesets_requested">
+          Agent label
+          <input type="text" name="label" value="{{name}}">
+          <input type="hidden" name="rids" value="org.sovrin.agent">
+          <button>Create agent</button>
+        </form>
       {{else}}
         <a href="https://sovrin.org" target="_blank"><img src="https://manifold.picolabs.io:9090/img/SovrinIcon.png" alt="Sovrin Icon" class="icon"></a>
         {{#if ui.wf}}
@@ -207,7 +212,12 @@ async function main(){
   }
   var $theSection = $('#section')
   var doDisplay = async function(){
-    var agentUI = { eci: myself.eci, pico_id: myself.id, browser: true }
+    var agentUI = {
+      name: myself.name,
+      eci: myself.eci,
+      pico_id: myself.id,
+      browser: true
+    }
     var hasRids = await pe.runQuery({eci:rootECI,rid:ridWrangler,name:'installedRulesets'})
     var isAgent = hasRids.includes(ridAgent)
     await pe.signalEvent(
