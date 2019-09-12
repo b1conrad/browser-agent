@@ -1,17 +1,17 @@
 <html lang="en-US">
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <link rel="icon" type="image/png" href="http://picos.byu.edu:8080/pico-logo-transparent-48x48.png" />
+    <link rel="icon" type="image/png" href="https://manifold.picolabs.io:9090/pico-logo-transparent-48x48.png" />
     <title>Browser Agent Pico</title>
-    <link rel="stylesheet" href="http://picos.byu.edu:8080/css/index.css" />
-    <script src="http://picos.byu.edu:8080/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-    <script src="http://picos.byu.edu:8080/js/handlebars.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://manifold.picolabs.io:9090/css/index.css" />
+    <script src="https://manifold.picolabs.io:9090/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+    <script src="https://manifold.picolabs.io:9090/js/handlebars.min.js" type="text/javascript"></script>
     <script id="agent-template" type="text/x-handlebars-template">
       <div id="connection-list">
       {{#if disabled}}
         To be an agent, <a class="js-ajax-link" href="/sky/event/{{eci}}/add-ruleset/wrangler/install_rulesets_requested?rids=org.sovrin.agent">install</a> the org.sovrin.agent ruleset
       {{else}}
-        <a href="https://sovrin.org" target="_blank"><img src="http://picos.byu.edu:8080/img/SovrinIcon.png" alt="Sovrin Icon" class="icon"></a>
+        <a href="https://sovrin.org" target="_blank"><img src="https://manifold.picolabs.io:9090/img/SovrinIcon.png" alt="Sovrin Icon" class="icon"></a>
         {{#if ui.wf}}
           {{#if ui.wf.url}}<a href="{{ui.wf.url}}" target="_blank">{{/if}}{{#if ui.wf.photo}}<img src="{{ui.wf.photo}}" alt="photo" class="icon">{{else}}{{#if ui.wf.url}}<img src="img/blank-profile-picture.png" alt="blank profile picture" class="icon">{{/if}}{{/if}}{{#if ui.wf.url}}</a>{{/if}}
         {{/if}}
