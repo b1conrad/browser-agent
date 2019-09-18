@@ -12,7 +12,9 @@
           <h3>Connections</h3>
           <ul>
           {{#each ui.connections}}
+            {{#if url}}
             <li><a href="{{url}}#{{my_did}}">{{label}}</a></li>
+            {{/if}}
           {{/each}}
           </ul>
         {{else}}
@@ -97,7 +99,10 @@ async function main(){
       var connections = linksUI.ui.connections
       for(var i=0; i<connections.length; ++i){
         var conn = connections[i]
-        var url = 'https://'+conn.label.split(' ')[0]+'.bruceatbyu.com'
+        var names = conn.label.split(' ')
+        if(names.length===2){ //kludge
+          var url = 'https://'+names[0]+'.bruceatbyu.com'
+        }
         linksUI.ui.connections[i].url = url
       }
     } else {
