@@ -60,7 +60,7 @@ async function main(){
     var isAgent = hasRids.includes(ridAgent)
     if(isAgent){
       var ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
-      var connections = ui.connections
+      var connections = ui.connections || []
       var verified = null
       for(var i=0; i<connections.length; ++i){
         var conn = connections[i]
