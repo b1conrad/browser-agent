@@ -59,7 +59,6 @@ async function main(){
     }
   }
 
-  alert('started');
   console.log('started');
 
   var agentECI = null
@@ -80,6 +79,7 @@ async function main(){
     name: 'myself'
   })
 
+  document.title = myself.name + ' Links'
   console.log('myself:', JSON.stringify(myself));
   $('#refresh').click(function (e) {
     e.preventDefault()
