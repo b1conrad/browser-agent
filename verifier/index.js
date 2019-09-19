@@ -27,10 +27,9 @@ async function main(){
     }
   }
 
-  alert('started');
   console.log('started');
 
-  var agentECI = null
+  var agentECI = rootECI
   var children = await pe.runQuery({
     eci: rootECI,
     rid: ridWrangler,
@@ -38,9 +37,6 @@ async function main(){
   })
   if(children && children.length){
     agentECI = children[0].eci
-  } else {
-    alert('Your agent has not been created yet')
-    location = 'agent.html'
   }
   var myself = await pe.runQuery({
     eci: agentECI,
@@ -74,7 +70,7 @@ async function main(){
         $theSection.html('You are not logged in')
       }
     } else {
-      $theSection.html('Internal error')
+      $theSection.html('You are not logged in')
     }
   }
   doDisplay()
