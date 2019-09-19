@@ -66,11 +66,14 @@ async function main(){
       }
       if(verified) {
         $theSection.html('Welcome, '+verified.label)
+        $('#logout').show()
       } else {
         $theSection.html('You are not logged in')
+        $('#login').show()
       }
     } else {
       $theSection.html('You are not logged in')
+      $('#login').show()
     }
   }
   doDisplay()
