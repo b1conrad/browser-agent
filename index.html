@@ -97,14 +97,16 @@ async function main(){
     if(isAgent){
       linksUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
       var connections = linksUI.ui.connections
-      for(var i=0; i<connections.length; ++i){
-        var conn = connections[i]
-        var names = conn.label.split(' ')
-        var url = null
-        if(names.length===2){ //kludge
-          url = 'https://'+names[0]+'.bruceatbyu.com'
+      if(connections){
+        for(var i=0; i<connections.length; ++i){
+          var conn = connections[i]
+          var names = conn.label.split(' ')
+          var url = null
+          if(names.length===2){ //kludge
+            url = 'https://'+names[0]+'.bruceatbyu.com'
+          }
+          linksUI.ui.connections[i].url = url
         }
-        linksUI.ui.connections[i].url = url
       }
     } else {
       linksUI.disabled = true
