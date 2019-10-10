@@ -1,0 +1,23 @@
+{
+  "name": "browser-agent",
+  "version": "1.0.0",
+  "description": "sovrin agent running in a browser tab",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b1conrad/browser-agent.git"
+  },
+  "author": "Bruce Conrad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b1conrad/browser-agent/issues"
+  },
+  "homepage": "https://github.com/b1conrad/browser-agent#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
