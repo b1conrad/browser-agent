@@ -3,4 +3,5 @@ pe-ui-index.html
 notes/
 node_modules/
 package-lock.json
+certs/
 
