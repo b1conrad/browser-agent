@@ -13,9 +13,8 @@ we have tested
 
 ### using the local filesystem
 
-1. make a folder to be used (e.x. `mkdir browser-agent`)
-1. download [`agent.html`](https://raw.githubusercontent.com/b1conrad/browser-agent/master/agent.html) and [`index.html`](https://raw.githubusercontent.com/b1conrad/browser-agent/master/index.html) files to that folder
-1. open `index.html` in a browser
+1. use [download](download.html) and click on the links to download `agent.html` and `index.html`
+1. open downloaded `index.html` in a browser
 1. when prompted, give your local agent a label (e.x. your name)
 
 ### using `git`
