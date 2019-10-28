@@ -23,6 +23,6 @@ we have tested
 1. in a folder of your choice do `git clone https://github.com/b1conrad/browser-agent.git`
 1. change to the installed folder (i.e. `cd browser-agent`)
 1. install dependencies (i.e. `npm install`)
-1. run a localhost server (on port `1800` pronounced "one eight hundred")
+1. run a localhost server (on port `1800` pronounced "one eight hundred") with command `node app.js`
 1. open `localhost:1800` in a browser
 1. when prompted, give your local agent a label (e.x. your name)
