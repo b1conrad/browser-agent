@@ -13,7 +13,7 @@ we have tested
 
 ### using the local filesystem
 
-1. use [download](https://b1conrad.github.io/browser-agent/download.html) and click on the links to download `agent.html` and `index.html`
+1. use this [download page](https://b1conrad.github.io/browser-agent/download.html) and click on the links to download `agent.html` and `index.html`
 1. open downloaded `index.html` in a supported browser
 1. when prompted, give your local agent a label (e.g. your name)
 
