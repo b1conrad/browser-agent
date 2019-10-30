@@ -39,17 +39,17 @@ or
 
 set up your own, by
 
-- installing a pico-engine (in the cloud somewhere) and installing
+- installing and running a pico-engine (in the cloud somewhere) and registering
 the rulesets listed at the [G2S project](https://github.com/Picolab/G2S) (note that you
-won't need to set up an agency)
+_won't_ need to set up an agency)
 - creating a Pico Agent with the
 `org.sovrin.router` ruleset installed in it
 - giving it a channel named "router_request" 
 with type "well_known"
 
-once this is done, you'll be able to configure the inbound router
+once you have access to a routing agent, you'll be able to configure the inbound router
 in your local Pico Agent using
 
-- for "router host" the web address of the cloud-based pico-engine
-- for "router request eci" the id of the well_known/router_request channel
+- for "router host" the web address of the cloud-based pico-engine hosting your router pico
+- for "router request eci" the id of the well_known/router_request channel of your router pico
 - for "router label" the name of the router pico
