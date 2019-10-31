@@ -20,6 +20,14 @@
         {{else}}
           <h3>No connections</h3>
         {{/if}}
+        <form onsubmit="event.preventDefault();accept_invite('{{eci}}',url.value)">
+          When you receive a new connection invitation
+          <input type="text" name="url" placeholder="paste invitation here">
+          <button>Accept</button>
+        </form>
+        <p>
+          <a href="agent.html">agent</a>
+        </p>
     </script>
   </head>
   <body>
@@ -31,6 +39,11 @@
     </div>
 <script src="https://manifold.picolabs.io/pico-engine.js" type="text/javascript"></script>
 <script type="text/javascript">
+async function accept_invite(eci,url){
+    await pe.signalEvent(
+      {eci:eci,eid:'accept',domain:'sovrin',type:'new_invitation',
+        attrs:{url:url,need_router_connection:true}})
+}
 async function main(){
   // start it up
   var pe = await PicoEngine();
@@ -111,6 +124,7 @@ async function main(){
     } else {
       linksUI.disabled = true
     }
+    linksUI.eci = agentECI
     $theSection.html(linksTemplate(linksUI))
   }
   doDisplay()
