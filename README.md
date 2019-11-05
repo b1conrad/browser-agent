@@ -13,8 +13,8 @@ we have tested
 
 ### using the local filesystem
 
-1. use this [download page](https://b1conrad.github.io/browser-agent/download.html) and click on the links to download `agent.html` and `index.html`
-1. open downloaded `index.html` in a supported browser
+1. use this [download page](https://b1conrad.github.io/browser-agent/download.html) and click on the links to download `agent.html` and `index.html` (or just click on the link for `spa.html`)
+1. open downloaded `index.html` (or `spa.html`) in a supported browser
 1. when prompted, give your local agent a label (e.g. your name)
 
 ### using `git`, `npm`, and `node` to run a local server
