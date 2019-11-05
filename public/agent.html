@@ -280,18 +280,14 @@ async function main(){
     $theSection.find('.js-ajax-link').click(async function (e) {
       e.preventDefault()
       var href = $(this).attr('href')
-      if(confirm(JSON.stringify(convert(href)))){
-        await pe.signalEvent(convert(href))
-        doDisplay()
-      }
+      await pe.signalEvent(convert(href))
+      doDisplay()
     })
     $theSection.find('.js-ajax-form').submit(async function (e) {
       e.preventDefault()
       var action = $(this).attr('action')
-      if(confirm(JSON.stringify(convert(action,this)))){
-        await pe.signalEvent(convert(action,this))
-        doDisplay()
-      }
+      await pe.signalEvent(convert(action,this))
+      doDisplay()
     })
   }
   doDisplay()
