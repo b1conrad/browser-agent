@@ -12,6 +12,10 @@ app.get('/agent', function(req, res) {
   res.sendFile('agent.html',options);
 });
 
+app.get('/spa', function(req, res) {
+  res.sendFile('spa.html',options);
+});
+
 app.get('/pico-engine.js', function(req, res) {
   res.sendFile('pico-engine.js',options);
 });
