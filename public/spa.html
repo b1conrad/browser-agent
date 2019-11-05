@@ -269,12 +269,14 @@ async function main(){
     var whichPage = whereSpec[0]
     var pageName = whichPage === 'agent' ? 'Agent' : 'Links'
     document.title = myself.name + ' ' + pageName
+    await pe.signalEvent(
+      {eci:agentECI,eid:'poll_router',domain:'edge',type:'poll_all_needed'})
     var linksUI = {
       name: myself.name,
     }
     var hasRids = await pe.runQuery({eci:agentECI,rid:ridWrangler,name:'installedRulesets'})
     var isAgent = hasRids.includes(ridAgent)
-    if(isAgent){
+    if(isAgent && whichPage === 'links'){
       linksUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
       var connections = linksUI.ui.connections
       if(connections){
@@ -298,11 +300,7 @@ async function main(){
       pico_id: myself.id,
       browser: true
     }
-    var hasRids = await pe.runQuery({eci:agentECI,rid:ridWrangler,name:'installedRulesets'})
-    var isAgent = hasRids.includes(ridAgent)
-    await pe.signalEvent(
-      {eci:agentECI,eid:'poll_router',domain:'edge',type:'poll_all_needed'})
-    if(isAgent){
+    if(isAgent && whichPage === 'agent'){
       agentUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
       var isEdge = hasRids.includes(ridEdge)
       if(isEdge){
@@ -358,6 +356,7 @@ async function main(){
       } else {
         location.hash = whichPage
       }
+      doDisplay()
     })
   }
   doDisplay()
