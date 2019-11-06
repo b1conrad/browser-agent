@@ -30,10 +30,12 @@ pre-requisite is that you have those programs installed on your device
 1. open `localhost:1800` in a supported browser
 1. when prompted, give your local agent a label (e.g. your name)
 
-just to try it out, you can visit
+### use one owned by this repo
 
 1. https://b1conrad.github.io/browser-agent/spa.html#agent
 1. when prompted, give your local agent a label (e.g. your name)
+
+see cleanup instructions below when you have tried it out
 
 ## you will need an "inbound routing agent"
 
