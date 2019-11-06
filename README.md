@@ -11,6 +11,8 @@ we have tested
 
 ## installation
 
+consider these three possible ways to install a browser agent
+
 ### using the local filesystem
 
 1. use this [download page](https://b1conrad.github.io/browser-agent/download.html) and click on the links to download `agent.html` and `index.html` (or just click on the link for `spa.html`)
@@ -28,7 +30,12 @@ pre-requisite is that you have those programs installed on your device
 1. open `localhost:1800` in a supported browser
 1. when prompted, give your local agent a label (e.g. your name)
 
-### you will need an "inbound routing agent"
+just to try it out, you can visit
+
+1. https://b1conrad.github.io/browser-agent/spa.html#agent
+1. when prompted, give your local agent a label (e.g. your name)
+
+## you will need an "inbound routing agent"
 
 otherwise, your local Pico Agent will be able to send outbound agent-to-agent messages,
 but won't be able to receive any such messages
@@ -53,3 +60,16 @@ in your local Pico Agent using
 - for "router host" the web address of the cloud-based pico-engine hosting your router pico
 - for "router request eci" the id of the well_known/router_request channel of your router pico
 - for "router label" the name of the router pico
+
+## cleanup
+
+while viewing a browser agent which you no longer wish to use
+you can release the storage space it has encumbered
+
+1. open developer tools
+1. select the Application tab
+1. open the arrow beside IndexedDB
+1. click on level-js-pico-engine
+1. click the button Delete database
+1. confirm
+
