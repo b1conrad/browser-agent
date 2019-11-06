@@ -1,5 +1,5 @@
 # browser-agent
-agent running in a browser
+sovrin Indy agent running in a browser
 
 ### supported browsers
 
