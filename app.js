@@ -20,6 +20,10 @@ app.get('/pico-engine.js', function(req, res) {
   res.sendFile('pico-engine.js',options);
 });
 
+app.get('/pico-engine.min.js', function(req, res) {
+  res.sendFile('pico-engine.min.js',options);
+});
+
 app.listen(1800, function() {
   console.log('Example app listening on port 1800!');
 });
