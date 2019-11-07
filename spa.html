@@ -135,6 +135,9 @@
         </div>
       {{/if}}
     </script>
+    <style type="text/css">
+.cursor-wait { cursor: wait !important; }
+    </style>
   </head>
   <body>
     <div id="refresh" style="padding:10px;float:right">
@@ -146,6 +149,22 @@
 <script src="https://manifold.picolabs.io/pico-engine.js" type="text/javascript"></script>
 <script type="text/javascript">
 async function main(){
+  var cursor_wait = function(){
+    var elements = $(':hover')
+    if(elements.length){
+      elements.last().addClass('cursor-wait')
+    }
+    $('html')
+    .off('mouseover.cursorwait')
+    .on('mouseover.cursorwait',function(e){
+      $(e.target).addClass('cursor-wait')
+    })
+  }
+  var remove_cursor_wait = function(){
+    $('html').off('mouseover.cursorwait')
+    $('.cursor-wait').removeClass('cursor-wait')
+  }
+  cursor_wait()
   // start it up
   var pe = await PicoEngine();
   window.pe = pe;// make it global so we can use it in the devtools console
@@ -213,6 +232,7 @@ async function main(){
   console.log('myself:', JSON.stringify(myself));
   $('#refresh').click(function (e) {
     e.preventDefault()
+    cursor_wait()
     doDisplay()
   })
   var agentTemplate = Handlebars.compile($('#agent-template').html());
@@ -254,7 +274,7 @@ async function main(){
           attrs:formToJSON(form,qs)
         })
       }
-      //}else if(isQuery){
+      // else if(isQuery){
         //return({
           //eci:isQuery[1],
           //rid:isQuery[2],
@@ -328,21 +348,25 @@ async function main(){
     var whichTemplate = whichPage === 'agent' ? agentTemplate : linksTemplate
     var whichUI = whichPage === 'agent' ? agentUI : linksUI
     $theSection.html(whichTemplate(whichUI))
+    remove_cursor_wait()
     $theSection.find('.js-ajax-link').click(async function (e) {
       e.preventDefault()
       var href = $(this).attr('href')
+      cursor_wait()
       await pe.signalEvent(convert(href))
       doDisplay()
     })
     $theSection.find('.js-ajax-form').submit(async function (e) {
       e.preventDefault()
       var action = $(this).attr('action')
+      cursor_wait()
       await pe.signalEvent(convert(action,this))
       doDisplay()
     })
     $theSection.find('.turn-page').click(function(e) {
       e.preventDefault()
       location.hash = $(this).attr('href').substring(1)
+      cursor_wait()
       doDisplay()
     })
     if (whereSpec.length) {
@@ -356,6 +380,7 @@ async function main(){
       } else {
         location.hash = whichPage
       }
+      cursor_wait()
       doDisplay()
     })
   }
