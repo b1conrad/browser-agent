@@ -1,6 +1,7 @@
 pe-ui-index.html
 .ok
 notes/
+notes/picolabs/
 node_modules/
 package-lock.json
 certs/
