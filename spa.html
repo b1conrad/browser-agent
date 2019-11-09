@@ -47,16 +47,6 @@
         <h2>{{ui.name}}</h2>
         <form class="js-ajax-form" action="/sky/event/{{eci}}/accept/sovrin/new_invitation">
         <table>
-{{#unless browser}}
-        <tr>
-          <th align="right">Local Invitation</th>
-          <td><input id="invite" value="{{ui.invitation}}"></td>
-          <td>
-            <button type="button" onclick="$('#invite').select();document.execCommand('copy')">Copy</button>
-            <button type="button" onclick="window.open($('#invite').val(),'invitation')">View</button>
-          </td>
-        </tr>
-{{/unless}}
 {{#if ui.routerUI.invitationViaRouter}}
         <tr>
           <th align="right">Invitation via {{ui.routerUI.routerName}}</th>
@@ -72,14 +62,10 @@
           <td><input type="text" name="url" placeholder="paste invitation URL here" required></td>
           <td>
             <button
-            {{#if browser}}{{#unless ui.routerUI}} disabled{{/unless}}{{/if}}
+            {{#unless ui.routerUI}} disabled{{/unless}}
               >Accept</button>
           {{#if ui.routerUI}}
-          {{#if browser}}
             <input type="hidden" name="need_router_connection" value="true">
-          {{else}}
-            <input type="checkbox" name="need_router_connection" value="true">
-          {{/if}}
             via inbound router
           {{/if}}
           </td>
@@ -318,7 +304,6 @@ async function main(){
       name: myself.name,
       eci: myself.eci,
       pico_id: myself.id,
-      browser: true
     }
     if(isAgent && whichPage === 'agent'){
       agentUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
