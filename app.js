@@ -5,19 +5,7 @@ var app = express();
 var options = { root: path.join(__dirname,'public') };
 
 app.get('/', function(req, res) {
-  res.sendFile('index.html',options);
-});
-
-app.get('/agent', function(req, res) {
-  res.sendFile('agent.html',options);
-});
-
-app.get('/spa', function(req, res) {
   res.sendFile('spa.html',options);
-});
-
-app.get('/pico-engine.js', function(req, res) {
-  res.sendFile('pico-engine.js',options);
 });
 
 app.get('/pico-engine.min.js', function(req, res) {
