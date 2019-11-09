@@ -22,7 +22,7 @@
         {{/if}}
         <form class="js-ajax-form" action="/sky/event/{{eci}}/accept/sovrin/new_invitation">
           When you receive a new connection invitation
-          <input type="text" name="url" placeholder="paste invitation here">
+          <input type="text" name="url" placeholder="paste invitation here" required>
           <button>Accept</button>
           <input type="hidden" name="need_router_connection" value="true">
         </form>
@@ -69,7 +69,7 @@
 {{/if}}
         <tr>
           <th align="right">Receive Invitation</th>
-          <td><input type="text" name="url" placeholder="paste invitation URL here"></td>
+          <td><input type="text" name="url" placeholder="paste invitation URL here" required></td>
           <td>
             <button
             {{#if browser}}{{#unless ui.routerUI}} disabled{{/unless}}{{/if}}
