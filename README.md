@@ -71,7 +71,8 @@ you can release the storage space it has encumbered
 1. open developer tools
 1. select the Application tab
 1. open the arrow beside IndexedDB
-1. click on level-js-pico-engine
+1. click on `level-js-pico-engine`
 1. click the button Delete database
 1. confirm
+1. repeat steps 4-6 for `level-js-pico-engine-ruleset-cache`
 
