@@ -286,7 +286,7 @@ async function main(){
   var $theSection = $('#section')
   var doDisplay = async function(){
     var whereSpec = location.hash.substring(1).split('-')
-    var whichPage = whereSpec[0]
+    var whichPage = whereSpec[0] || 'agent'
     var pageName = whichPage === 'agent' ? 'Agent' : 'Links'
     document.title = myself.name + ' ' + pageName
     await pe.signalEvent(
