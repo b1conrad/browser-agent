@@ -23,6 +23,7 @@
           <h3>No connections</h3>
         {{/if}}
         <form class="js-ajax-form" action="/sky/event/{{eci}}/accept/sovrin/new_invitation">
+          <p>
           When you receive a new connection invitation
           <input type="text" name="url" placeholder="paste invitation here" required>
           <button
@@ -33,6 +34,7 @@
           {{/unless}}
             >Accept</button>
           <input type="hidden" name="need_router_connection" value="true">
+          </p>
         </form>
         <p>
           <a class="turn-page" href="#agent">agent</a>
