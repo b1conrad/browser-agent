@@ -24,7 +24,13 @@
         <form class="js-ajax-form" action="/sky/event/{{eci}}/accept/sovrin/new_invitation">
           When you receive a new connection invitation
           <input type="text" name="url" placeholder="paste invitation here" required>
-          <button>Accept</button>
+          <button
+          {{#unless ui.routerUI}}
+            disabled
+            style="cursor:default"
+            title="need configured inbound router"
+          {{/unless}}
+            >Accept</button>
           <input type="hidden" name="need_router_connection" value="true">
         </form>
         <p>
@@ -63,12 +69,13 @@
           <td><input type="text" name="url" placeholder="paste invitation URL here" required></td>
           <td>
             <button
-            {{#unless ui.routerUI}} disabled{{/unless}}
+            {{#unless ui.routerUI}}
+              disabled
+              style="cursor:default"
+              title="need configured inbound router"
+            {{/unless}}
               >Accept</button>
-          {{#if ui.routerUI}}
             <input type="hidden" name="need_router_connection" value="true">
-            via inbound router
-          {{/if}}
           </td>
         </tr>
         </table>
@@ -283,6 +290,7 @@ async function main(){
     }
     var hasRids = await pe.runQuery({eci:agentECI,rid:ridWrangler,name:'installedRulesets'})
     var isAgent = hasRids.includes(ridAgent)
+    var isEdge = hasRids.includes(ridEdge)
     if(isAgent && whichPage === 'links'){
       linksUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
       var connections = linksUI.ui.connections
@@ -297,6 +305,9 @@ async function main(){
           linksUI.ui.connections[i].url = url
         }
       }
+      if(isEdge){
+        linksUI.ui.routerUI = await pe.runQuery({eci:agentECI,rid:ridEdge,name:'ui'})
+      }
     } else {
       linksUI.disabled = true
     }
@@ -308,7 +319,6 @@ async function main(){
     }
     if(isAgent && whichPage === 'agent'){
       agentUI.ui = await pe.runQuery({eci:agentECI,rid:ridAgent,name:'ui'})
-      var isEdge = hasRids.includes(ridEdge)
       if(isEdge){
         agentUI.ui.routerUI = await pe.runQuery({eci:agentECI,rid:ridEdge,name:'ui'})
         // adjust ui with router information
