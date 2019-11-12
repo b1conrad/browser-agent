@@ -47,7 +47,7 @@
         <form class="js-ajax-form" action="/sky/event/{{eci}}/add-ruleset/wrangler/install_rulesets_requested">
           Agent label
           <input type="text" name="label" value="{{name}}">
-          <input type="hidden" name="rids" value="org.sovrin.agent">
+          <input type="hidden" name="rids" value="org.sovrin.agent;org.sovrin.lets_connect">
           <button>Create agent</button>
         </form>
       {{else}}
@@ -180,6 +180,7 @@ async function main(){
     'org.sovrin.agent_message',
     'org.sovrin.agent',
     'org.sovrin.edge',
+    'org.sovrin.lets_connect',
   ];
   var regRids = await pe.runQuery({eci:rootECI,rid:ridWrangler,name:'registeredRulesets'})
   for ( var i=0; i<agent_rids.length; ++i ){
@@ -206,7 +207,7 @@ async function main(){
       eci: rootECI,
       domain: "wrangler",
       type: "child_creation",
-      attrs: {name:agentLabel,rids:"org.sovrin.agent"}
+      attrs: {name:agentLabel,rids:"org.sovrin.agent;org.sovrin.lets_connect"}
     })
     var dirs = directives.directives
     if(dirs
